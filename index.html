@@ -7,14 +7,35 @@
     <title>Launching Soon</title>
     <style>
         :root {
+            color-scheme: light;
+            --background: #f5f7ff;
+            --background-accent: #e0e7ff;
+            --card: rgba(255, 255, 255, 0.86);
+            --text: #172033;
+            --muted: #53617a;
+            --accent: #7c3aed;
+            --accent-light: #6d28d9;
+            --border: rgba(76, 29, 149, 0.16);
+            --input-background: rgba(255, 255, 255, 0.9);
+            --input-border: rgba(83, 97, 122, 0.3);
+            --fine-print: #71809d;
+            --shadow: rgba(44, 38, 90, 0.16);
+        }
+
+        body.dark-mode {
             color-scheme: dark;
             --background: #0b1020;
+            --background-accent: #312e81;
             --card: rgba(19, 28, 55, 0.82);
             --text: #f8fafc;
             --muted: #aab6d3;
             --accent: #8b5cf6;
             --accent-light: #c4b5fd;
             --border: rgba(196, 181, 253, 0.2);
+            --input-background: rgba(7, 12, 28, 0.72);
+            --input-border: rgba(170, 182, 211, 0.3);
+            --fine-print: #7e8baa;
+            --shadow: rgba(0, 0, 0, 0.35);
         }
 
         * { box-sizing: border-box; }
@@ -26,28 +47,53 @@
             place-items: center;
             padding: 24px;
             overflow: hidden;
-            background: radial-gradient(circle at 20% 20%, #1e1b4b 0, transparent 38%),
-                        radial-gradient(circle at 80% 80%, #312e81 0, transparent 35%), var(--background);
+            background: radial-gradient(circle at 20% 20%, var(--background-accent) 0, transparent 38%),
+                        radial-gradient(circle at 80% 80%, #c4b5fd 0, transparent 35%), var(--background);
             color: var(--text);
             font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         main {
+            position: relative;
             width: min(100%, 560px);
             padding: clamp(32px, 8vw, 64px) clamp(24px, 7vw, 56px);
             border: 1px solid var(--border);
             border-radius: 24px;
             background: var(--card);
-            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+            box-shadow: 0 24px 80px var(--shadow);
             text-align: center;
             backdrop-filter: blur(16px);
+            transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
         }
+
+        .theme-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            min-height: 36px;
+            padding: 0 11px;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 0.82rem;
+            font-weight: 600;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+
+        .theme-switch:hover { background: var(--border); transform: none; filter: none; }
+        .theme-icon { font-size: 1rem; }
 
         .badge {
             display: inline-block;
             margin-bottom: 22px;
             padding: 7px 14px;
-            border: 1px solid rgba(196, 181, 253, 0.35);
+            border: 1px solid var(--border);
             border-radius: 999px;
             color: var(--accent-light);
             font-size: 0.78rem;
@@ -56,43 +102,22 @@
             text-transform: uppercase;
         }
 
-        h1 {
-            margin: 0;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            line-height: 1.05;
-            letter-spacing: -0.05em;
-        }
-
-        p {
-            margin: 20px 0 30px;
-            color: var(--muted);
-            font-size: 1.08rem;
-            line-height: 1.65;
-        }
-
-        form {
-            display: flex;
-            gap: 10px;
-            margin: 0 auto;
-        }
-
-        input, button {
-            min-height: 50px;
-            border-radius: 10px;
-            font: inherit;
-        }
+        h1 { margin: 0; font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.05; letter-spacing: -0.05em; }
+        p { margin: 20px 0 30px; color: var(--muted); font-size: 1.08rem; line-height: 1.65; }
+        form { display: flex; gap: 10px; margin: 0 auto; }
+        input, button { min-height: 50px; border-radius: 10px; font: inherit; }
 
         input {
             width: 100%;
             min-width: 0;
             padding: 0 15px;
-            border: 1px solid rgba(170, 182, 211, 0.3);
+            border: 1px solid var(--input-border);
             outline: none;
-            background: rgba(7, 12, 28, 0.72);
+            background: var(--input-background);
             color: var(--text);
         }
 
-        input::placeholder { color: #7e8baa; }
+        input::placeholder { color: var(--fine-print); }
         input:focus { border-color: var(--accent-light); box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.22); }
 
         button {
@@ -106,20 +131,23 @@
             transition: transform 0.2s ease, filter 0.2s ease;
         }
 
-        button:hover { filter: brightness(1.12); transform: translateY(-1px); }
+        form button:hover { filter: brightness(1.12); transform: translateY(-1px); }
         button:active { transform: translateY(0); }
-
         #message { min-height: 24px; margin: 14px 0 0; color: var(--accent-light); font-size: 0.9rem; }
-        .fine-print { margin: 16px 0 0; color: #7e8baa; font-size: 0.78rem; }
+        .fine-print { margin: 16px 0 0; color: var(--fine-print); font-size: 0.78rem; }
 
         @media (max-width: 480px) {
             form { flex-direction: column; }
-            button { width: 100%; }
+            form button { width: 100%; }
         }
     </style>
 </head>
 <body>
     <main>
+        <button class="theme-switch" id="theme-switch" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+            <span class="theme-icon" aria-hidden="true">☾</span>
+            <span id="theme-label">Dark mode</span>
+        </button>
         <div class="badge">Something new is coming</div>
         <h1>Launching Soon</h1>
         <p>We’re putting the finishing touches on something special. Join the list and be the first to receive an update.</p>
@@ -134,6 +162,18 @@
     </main>
 
     <script>
+        const themeSwitch = document.getElementById('theme-switch');
+        const themeLabel = document.getElementById('theme-label');
+        const themeIcon = themeSwitch.querySelector('.theme-icon');
+
+        themeSwitch.addEventListener('click', function () {
+            const isDark = document.body.classList.toggle('dark-mode');
+            themeSwitch.setAttribute('aria-pressed', isDark);
+            themeSwitch.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+            themeLabel.textContent = isDark ? 'Light mode' : 'Dark mode';
+            themeIcon.textContent = isDark ? '☀' : '☾';
+        });
+
         document.getElementById('updates-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const email = document.getElementById('email').value;
