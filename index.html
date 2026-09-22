@@ -8,33 +8,33 @@
     <style>
         :root {
             color-scheme: light;
-            --background: #f5f7ff;
-            --background-accent: #e0e7ff;
+            --background: #fff7f1;
+            --background-accent: #fed7aa;
             --card: rgba(255, 255, 255, 0.86);
-            --text: #172033;
-            --muted: #53617a;
-            --accent: #7c3aed;
-            --accent-light: #6d28d9;
-            --border: rgba(76, 29, 149, 0.16);
+            --text: #1f2937;
+            --muted: #5b6475;
+            --accent: #f97316;
+            --accent-light: #ea580c;
+            --border: rgba(234, 88, 12, 0.16);
             --input-background: rgba(255, 255, 255, 0.9);
-            --input-border: rgba(83, 97, 122, 0.3);
-            --fine-print: #71809d;
-            --shadow: rgba(44, 38, 90, 0.16);
+            --input-border: rgba(107, 114, 128, 0.3);
+            --fine-print: #7a818f;
+            --shadow: rgba(120, 53, 15, 0.14);
         }
 
         body.dark-mode {
             color-scheme: dark;
-            --background: #0b1020;
-            --background-accent: #312e81;
-            --card: rgba(19, 28, 55, 0.82);
-            --text: #f8fafc;
-            --muted: #aab6d3;
-            --accent: #8b5cf6;
-            --accent-light: #c4b5fd;
-            --border: rgba(196, 181, 253, 0.2);
-            --input-background: rgba(7, 12, 28, 0.72);
-            --input-border: rgba(170, 182, 211, 0.3);
-            --fine-print: #7e8baa;
+            --background: #1b120d;
+            --background-accent: #7c2d12;
+            --card: rgba(34, 22, 18, 0.82);
+            --text: #fff7ed;
+            --muted: #f7d9c4;
+            --accent: #fb923c;
+            --accent-light: #fdba74;
+            --border: rgba(251, 146, 60, 0.24);
+            --input-background: rgba(31, 17, 12, 0.7);
+            --input-border: rgba(253, 186, 116, 0.25);
+            --fine-print: #f2c6a1;
             --shadow: rgba(0, 0, 0, 0.35);
         }
 
@@ -48,7 +48,7 @@
             padding: 24px;
             overflow: hidden;
             background: radial-gradient(circle at 20% 20%, var(--background-accent) 0, transparent 38%),
-                        radial-gradient(circle at 80% 80%, #c4b5fd 0, transparent 35%), var(--background);
+                        radial-gradient(circle at 80% 80%, #fdba74 0, transparent 35%), var(--background);
             color: var(--text);
             font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             transition: background 0.3s ease, color 0.3s ease;
@@ -118,12 +118,12 @@
         }
 
         input::placeholder { color: var(--fine-print); }
-        input:focus { border-color: var(--accent-light); box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.22); }
+        input:focus { border-color: var(--accent-light); box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.22); }
 
         button {
             padding: 0 19px;
             border: 0;
-            background: linear-gradient(135deg, var(--accent), #6d28d9);
+            background: linear-gradient(135deg, var(--accent), #c2410c);
             color: white;
             cursor: pointer;
             font-weight: 700;
